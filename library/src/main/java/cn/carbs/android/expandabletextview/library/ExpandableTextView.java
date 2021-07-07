@@ -337,7 +337,7 @@ public class ExpandableTextView extends TextView{
         return mLayout != null ? mLayout : getLayout();
     }
 
-    private void toggle(){
+    public void toggle(){
         switch (mCurrState){
             case STATE_SHRINK:
                 mCurrState = STATE_EXPAND;

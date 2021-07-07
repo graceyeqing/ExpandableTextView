@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <cn.carbs.android.expandabletextview.library.ExpandableTextView
+        android:id="@+id/tv_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="#323233"
+        android:lineSpacingExtra="5dp"
+        android:text="此原料是中国已知的化妆品原料，未收录在《化妆品安
+全技术规范》（2015版）的禁限成分清单中。美国CIR
+评论认为该原料在已有的化妆品中的使用是安全的，使
+用浓度为0.00007-89%。"
+        app:etv_MaxLinesOnShrink="3"
+        app:etv_ToShrinkHintShow="false"
+        app:etv_ToExpandHintColor="#FFB76EFF"/>
+
+    <TextView
+        android:id="@+id/tv_des"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:textColor="#868686"
+        android:textSize="10sp"
+        android:lineSpacingExtra="5dp"
+        android:visibility="gone"
+        android:text="参考文献：
+1、《已使用化妆品原料名称目录》（2015）
+2、Cosmetic Ingredient Review. Cosmetic ingredients found safe as
+used (2015) http://www.cir-safety.org/sites/default/files/Safe_092015_
+posted110415.pdf
+"/>
+
+    <LinearLayout
+        android:id="@+id/ll_shrink"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:visibility="gone">
+        <TextView
+            android:id="@+id/tv_shrink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="收起"
+            android:paddingLeft="15dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:textColor="#FFB76EFF"
+            android:textSize="14sp"
+            android:gravity="right"/>
+    </LinearLayout>
+
+
+</LinearLayout>
