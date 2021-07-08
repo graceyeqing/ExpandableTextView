@@ -1,5 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.novoda.bintray-release'
 
 android {
     compileSdkVersion 29
@@ -33,13 +32,4 @@ dependencies {
 //    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
 //    androidTestCompile 'com.android.support.test:runner:0.5'
 //    androidTestCompile 'com.android.support:support-annotations:28.0.3'
-}
-
-publish {
-    userOrg = 'carbs'
-    groupId = 'cn.carbs.android'
-    artifactId = 'ExpandableTextView'
-    publishVersion = '1.0.2'
-    desc = 'an ExpandableTextView on Android platform which can shrink TextView height if its line count is greater than a certain number, it also can toggle state between expand and shrink'
-    website = 'https://github.com/Carbs0126/ExpandableTextView'
 }

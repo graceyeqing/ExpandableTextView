@@ -38,10 +38,7 @@ public class ActivityMain extends AppCompatActivity implements View.OnClickListe
         mETV = (ExpandableTextView)this.findViewById(R.id.etv);
         spExpandTextView = findViewById(R.id.sp_etv);
 
-        spExpandTextView.setContent("此原料是中国已知的化妆品原料，未收录在《化妆品安\n" +
-                "全技术规范》（2015版）的禁限成分清单中。美国CIR\n" +
-                "评论认为该原料在已有的化妆品中的使用是安全的，使\n" +
-                "用浓度为0.00007-89%。","参考文献：\n" +
+        spExpandTextView.setContent("此原料是中国已知的化妆品原料，未收录在《化妆品安\n","参考文献：\n" +
                 "1、《已使用化妆品原料名称目录》（2015）\n" +
                 "2、Cosmetic Ingredient Review. Cosmetic ingredients found safe as \n" +
                 "used (2015) http://www.cir-safety.org/sites/default/files/Safe_092015_\n" +
