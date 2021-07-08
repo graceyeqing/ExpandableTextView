@@ -1,0 +1,14 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+
+    <style name="style_14_323233">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#FF323233</item>
+    </style>
+
+    <style name="style_10_868686">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">#FF868686</item>
+    </style>
+
+</resources>
