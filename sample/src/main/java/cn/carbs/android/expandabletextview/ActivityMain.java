@@ -2,15 +2,17 @@ package cn.carbs.android.expandabletextview;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Random;
 
 import cn.carbs.android.expandabletextview.library.ExpandableTextView;
 import cn.carbs.android.expandabletextview.library.SpExpandTextView;
+import cn.carbs.android.expandabletextview.library.SpExpandTextView2;
 
 /**
  * Created by carbs on 2016/7/23.
@@ -21,6 +23,7 @@ public class ActivityMain extends AppCompatActivity implements View.OnClickListe
     private Button mBtnUpdateText;
     private Button mBtnToListView;
     private SpExpandTextView spExpandTextView;
+    private SpExpandTextView2 spExpandTextView2;
 
     private ExpandableTextView mETV;
     private CharSequence[] mPoems = null;
@@ -37,12 +40,22 @@ public class ActivityMain extends AppCompatActivity implements View.OnClickListe
         mBtnToListView = (Button)this.findViewById(R.id.button_to_list_view);
         mETV = (ExpandableTextView)this.findViewById(R.id.etv);
         spExpandTextView = findViewById(R.id.sp_etv);
+        spExpandTextView2 = findViewById(R.id.sp_etv2);
 
-        spExpandTextView.setContent("此原料是中国已知的化妆品原料，未收录在《化妆品安\n","参考文献：\n" +
-                "1、《已使用化妆品原料名称目录》（2015）\n" +
-                "2、Cosmetic Ingredient Review. Cosmetic ingredients found safe as \n" +
-                "used (2015) http://www.cir-safety.org/sites/default/files/Safe_092015_\n" +
-                "posted110415.pdf\n");
+        spExpandTextView2.setContent("此原料是中国已知的化妆品原料，未收录在《化妆品安此原料是中国已知的化妆品原料，未收录在《化妆品安此原料是中国已知的化妆品原料，未收录在","参考文献：" +
+                "1、《已使用化妆品原料名称目录》（2015）此原料是中国已知的化妆品原料，未收录在" +
+                "2、Cosmetic Ingredient Review. Cosmetic ingredients found safe as " +
+                "used (2015) http://www.cir-safety.org/sites/default/files/Safe_092" +
+                "posted110415.pdf"+"3、Cosmetic Ingredient Review. Cosmetic ingredients found safe as " +
+                        "used (2015) http://www.cir-safety.org/sites/default/files/Safe_092" +
+                        "posted110415.pdf");
+
+        spExpandTextView.setContent("此原料是中国已知的化妆品原料，未收录在《化妆品安此原料是中国已知的化妆品原料，未收录在《化妆品安此原料是中国已知的化妆品原料，未收录在参考文献：" +
+                "1、《已使用化妆品原料名称目录》（2015）此原料是中国已知的化妆品原料，未收录在" +
+                "2、Cosmetic Ingredient Review. Cosmetic ingredients found safe as " +
+                "used (2015) http://www.cir-safety.org/sites/default/files/Safe_092" +
+                "posted110415.pdf","");
+
         mBtnUpdateText.setOnClickListener(this);
         mBtnToListView.setOnClickListener(this);
 

@@ -40,13 +40,12 @@
                 android:id="@+id/etv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
                 android:layout_marginBottom="32dp"
                 android:background="#22999999"
                 android:padding="12dp"
                 android:text="@string/poem_0"
                 android:textSize="12dp"
-                android:visibility="gone"/>
+                android:visibility="visible"/>
 
             <cn.carbs.android.expandabletextview.library.SpExpandTextView
                 android:id="@+id/sp_etv"
@@ -54,12 +53,20 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/etv"/>
 
+            <cn.carbs.android.expandabletextview.library.SpExpandTextView2
+                android:id="@+id/sp_etv2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/sp_etv"
+                android:layout_marginTop="30dp"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_above="@id/etv"
                 android:text="@string/effect"
-                android:textSize="14dp" />
+                android:textSize="14dp"
+                android:visibility="gone"/>
 
             <Button
                 android:id="@+id/button_to_list_view"
@@ -68,7 +75,8 @@
                 android:layout_alignParentBottom="true"
                 android:text="check in ListView"
                 android:textAllCaps="false"
-                android:textColor="#88000000" />
+                android:textColor="#88000000"
+                android:visibility="gone"/>
 
             <Button
                 android:id="@+id/button_update_text"
@@ -78,7 +86,8 @@
                 android:layout_marginBottom="4dp"
                 android:text="update ExpandableTextView"
                 android:textAllCaps="false"
-                android:textColor="#88000000" />
+                android:textColor="#88000000"
+                android:visibility="gone"/>
 
         </RelativeLayout>
     </ScrollView>
