@@ -27,7 +27,8 @@ android {
 
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
-    api 'com.android.support:appcompat-v7:28.0.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    api 'androidx.constraintlayout:constraintlayout:2.0.2'
 //    testCompile 'junit:junit:4.12'
 //    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
 //    androidTestCompile 'com.android.support.test:runner:0.5'

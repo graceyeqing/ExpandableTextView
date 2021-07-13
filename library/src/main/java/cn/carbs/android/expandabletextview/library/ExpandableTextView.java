@@ -13,8 +13,11 @@ package cn.carbs.android.expandabletextview.library;
  *  3.FlatUI
  *      http://www.bootcss.com/p/flat-ui/
  */
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.DynamicLayout;
 import android.text.Layout;
@@ -26,6 +29,7 @@ import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
+import android.text.style.ImageSpan;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -34,6 +38,7 @@ import android.widget.TextView;
 
 import java.lang.reflect.Field;
 
+@SuppressLint("AppCompatCustomView")
 public class ExpandableTextView extends TextView{
 
     public static final int STATE_SHRINK = 0;
@@ -41,7 +46,7 @@ public class ExpandableTextView extends TextView{
 
     private static final String CLASS_NAME_VIEW = "android.view.View";
     private static final String CLASS_NAME_LISTENER_INFO = "android.view.View$ListenerInfo";
-    private static final String ELLIPSIS_HINT = "..";
+    private static final String ELLIPSIS_HINT = "...";
     private static final String GAP_TO_EXPAND_HINT = " ";
     private static final String GAP_TO_SHRINK_HINT = " ";
     private static final int MAX_LINES_ON_SHRINK = 2;
@@ -66,7 +71,10 @@ public class ExpandableTextView extends TextView{
     private int mToShrinkHintColor = TO_SHRINK_HINT_COLOR;
     private int mToExpandHintColorBgPressed = TO_EXPAND_HINT_COLOR_BG_PRESSED;
     private int mToShrinkHintColorBgPressed = TO_SHRINK_HINT_COLOR_BG_PRESSED;
-    private int mCurrState = STATE_SHRINK;
+    public int mCurrState = STATE_SHRINK;
+    private boolean mShowEndIcon;
+    private int mEndIconDown = R.drawable.icon_arrow_down;
+    private int mEndIconUp = R.drawable.icon_arrow_up;
 
     //  used to add to the tail of modified text, the "shrink" and "expand" text
     private TouchableSpan mTouchableSpan;
@@ -141,7 +149,14 @@ public class ExpandableTextView extends TextView{
                 mGapToExpandHint = a.getString(attr);
             }else if (attr == R.styleable.ExpandableTextView_etv_GapToShrinkHint){
                 mGapToShrinkHint = a.getString(attr);
+            }else if(attr == R.styleable.ExpandableTextView_etv_showEndIcon){
+                mShowEndIcon = a.getBoolean(attr,false);
+            }else if(attr == R.styleable.ExpandableTextView_etv_endIconDown){
+                mEndIconDown = a.getResourceId(attr,R.drawable.icon_arrow_down);
+            }else if(attr == R.styleable.ExpandableTextView_etv_endIconUp){
+                mEndIconUp = a.getResourceId(attr,R.drawable.icon_arrow_up);
             }
+
         }
         a.recycle();
     }
@@ -254,7 +269,8 @@ public class ExpandableTextView extends TextView{
                 int indexStart = getValidLayout().getLineStart(mMaxLinesOnShrink - 1);
                 int indexEndTrimmed = indexEnd
                         - getLengthOfString(mEllipsisHint)
-                        - (mShowToExpandHint ? getLengthOfString(mToExpandHint) + getLengthOfString(mGapToExpandHint) : 0);
+                        - (mShowToExpandHint ? getLengthOfString(mToExpandHint) + getLengthOfString(mGapToExpandHint) : 0)
+                        - (mShowEndIcon ? getLengthOfString("展")/2: 0);
 
                 if (indexEndTrimmed <= indexStart) {
                     indexEndTrimmed = indexEnd;
@@ -263,7 +279,8 @@ public class ExpandableTextView extends TextView{
                 int remainWidth = getValidLayout().getWidth() -
                         (int) (mTextPaint.measureText(mOrigText.subSequence(indexStart, indexEndTrimmed).toString()) + 0.5);
                 float widthTailReplaced = mTextPaint.measureText(getContentOfString(mEllipsisHint)
-                        + (mShowToExpandHint ? (getContentOfString(mToExpandHint) + getContentOfString(mGapToExpandHint)) : ""));
+                        + (mShowToExpandHint ? (getContentOfString(mToExpandHint) + getContentOfString(mGapToExpandHint)) : "")
+                        + (mShowEndIcon ? (getContentOfString("展")) : ""));
 
                 int indexEndTrimmedRevised = indexEndTrimmed;
                 if (remainWidth > widthTailReplaced) {
@@ -300,6 +317,16 @@ public class ExpandableTextView extends TextView{
                     ssbShrink.append(getContentOfString(mGapToExpandHint) + getContentOfString(mToExpandHint));
                     ssbShrink.setSpan(mTouchableSpan, ssbShrink.length() - getLengthOfString(mToExpandHint), ssbShrink.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                 }
+
+                if(mShowEndIcon){
+                    Drawable drawable = getResources().getDrawable(mEndIconDown);
+//                    drawable.setBounds(new Rect(getRight()-21,-20,getRight(),0));
+                    drawable.setBounds(16, 0, 37, 28);  //确定图标所在的矩形位置，这里应该是要以text文本的下边距为基准的
+                    ImageSpan imageSpan = new ImageSpan(drawable);
+                    ssbShrink.append(getContentOfString(mToExpandHint));
+                    ssbShrink.setSpan(imageSpan, ssbShrink.length()-2, ssbShrink.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);//这里确定替换的部分
+                }
+
                 return ssbShrink;
             }
             case STATE_EXPAND: {
@@ -316,6 +343,14 @@ public class ExpandableTextView extends TextView{
                 SpannableStringBuilder ssbExpand = new SpannableStringBuilder(mOrigText)
                         .append(mGapToShrinkHint).append(mToShrinkHint);
                 ssbExpand.setSpan(mTouchableSpan, ssbExpand.length() - getLengthOfString(mToShrinkHint), ssbExpand.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+                if(mShowEndIcon){
+                    Drawable drawable = getResources().getDrawable(mEndIconUp);
+                    drawable.setBounds(16, 0, 37, 28);//确定图标所在的矩形位置，这里应该是要以text文本的下边距为基准的
+                    ImageSpan imageSpan = new ImageSpan(drawable);
+                    ssbExpand.append(getContentOfString(mToExpandHint));
+                    ssbExpand.setSpan(imageSpan, ssbExpand.length()-2, ssbExpand.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);//这里确定替换的部分
+                }
                 return ssbExpand;
             }
         }
@@ -367,14 +402,16 @@ public class ExpandableTextView extends TextView{
     }
 
     private int getLengthOfString(String string){
-        if(string == null)
+        if(string == null) {
             return 0;
+        }
         return string.length();
     }
 
     private String getContentOfString(String string){
-        if(string == null)
+        if(string == null) {
             return "";
+        }
         return string;
     }
 
@@ -534,5 +571,18 @@ public class ExpandableTextView extends TextView{
             }
             return touchedSpan;
         }
+    }
+
+    public void setmMaxLinesOnShrink(int mMaxLinesOnShrink) {
+        this.mMaxLinesOnShrink = mMaxLinesOnShrink;
+        invalidate();
+    }
+
+    public int getmMaxLinesOnShrink() {
+        return mMaxLinesOnShrink;
+    }
+
+    public int getmTextLineCount() {
+        return mTextLineCount;
     }
 }

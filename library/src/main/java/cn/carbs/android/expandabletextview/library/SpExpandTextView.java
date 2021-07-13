@@ -3,7 +3,6 @@ package cn.carbs.android.expandabletextview.library;
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextUtils;
@@ -14,6 +13,8 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import androidx.annotation.RequiresApi;
 
 /**
  * @author yeqing
@@ -64,7 +65,7 @@ public class SpExpandTextView extends RelativeLayout {
         mLLShrink = (LinearLayout) view.findViewById(R.id.ll_shrink);
 
         //收起的点击监听
-        mShrinkView.setOnClickListener(new View.OnClickListener() {
+        mLLShrink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

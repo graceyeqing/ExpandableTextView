@@ -13,7 +13,8 @@
         android:lineSpacingExtra="5dp"
         app:etv_MaxLinesOnShrink="4"
         app:etv_ToShrinkHintShow="false"
-        app:etv_ToExpandHintColor="#FFB76EFF"/>
+        app:etv_ToExpandHintColor="#FFB76EFF"
+        app:etv_showEndIcon="true"/>
 
     <TextView
         android:id="@+id/tv_des"
@@ -29,7 +30,8 @@
         android:id="@+id/ll_shrink"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="right"
+        android:orientation="horizontal"
+        android:gravity="right|center_vertical"
         android:visibility="gone">
         <TextView
             android:id="@+id/tv_shrink"
@@ -42,6 +44,12 @@
             android:textColor="#FFB76EFF"
             android:textSize="14sp"
             android:gravity="right"/>
+        <ImageView
+            android:id="@+id/iv_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/icon_arrow_up0"/>
     </LinearLayout>
 
 
