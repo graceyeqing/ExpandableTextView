@@ -13,6 +13,7 @@ import java.util.Random;
 import cn.carbs.android.expandabletextview.library.ExpandableTextView;
 import cn.carbs.android.expandabletextview.library.SpExpandTextView;
 import cn.carbs.android.expandabletextview.library.SpExpandTextView2;
+import cn.carbs.android.expandabletextview.library.SpExpandTextView3;
 
 /**
  * Created by carbs on 2016/7/23.
@@ -24,6 +25,7 @@ public class ActivityMain extends AppCompatActivity implements View.OnClickListe
     private Button mBtnToListView;
     private SpExpandTextView spExpandTextView;
     private SpExpandTextView2 spExpandTextView2;
+    private SpExpandTextView3 spExpandTextView3;
 
     private ExpandableTextView mETV;
     private CharSequence[] mPoems = null;
@@ -38,19 +40,24 @@ public class ActivityMain extends AppCompatActivity implements View.OnClickListe
         mTVComparison = (TextView)this.findViewById(R.id.tv_comparison);
         mBtnUpdateText = (Button)this.findViewById(R.id.button_update_text);
         mBtnToListView = (Button)this.findViewById(R.id.button_to_list_view);
-        mETV = (ExpandableTextView)this.findViewById(R.id.etv);
+//        mETV = (ExpandableTextView)this.findViewById(R.id.etv);
         spExpandTextView = findViewById(R.id.sp_etv);
         spExpandTextView2 = findViewById(R.id.sp_etv2);
+        spExpandTextView3 = findViewById(R.id.sp_etv3);
 
-        spExpandTextView2.setContent("此原料是中国已知的化妆品原料，未此原料是","参考文献：" +
-                "1、《已使用化妆品原料名称目录》（2015）此原料是中国已知的化妆品原料，未收录在" +
+        spExpandTextView2.setContent("此原中中国料，未此原料是","参考文献：\n" +
+                "1、《已使用化妆品原料名称目录》Review. Cosmetic ingredients found safe as \n" +
                 "2、Cosmetic Ingredient Review. Cosmetic ingredients found safe as ");
+        spExpandTextView3.setContent("此原中中国原料是此料是","参考文献：\n" +
+                "1、《已使用化妆品原料名称目录》Review. Cosmetic ingredients found safe as \n" +
+                "2、《已使用化妆品原料名称目录》Review. Cosmetic ingredients found safe as \n" +
+                "3、Cosmetic Ingredient Review. Cosmetic ingredients found safe as ");
 
-        spExpandTextView.setContent("此原料是中国已知的化妆品原料，未收录在《化妆品安此原料是中国已知的化妆品原料，未收录在《化妆品安此原料是中国已知的化妆品原料，未收录在参考文献：" +
-                "1、《已使用化妆品原料名称目录》（2015）此原料是中国已知的化妆品原料，未收录在" +
-                "2、Cosmetic Ingredient Review. Cosmetic ingredients found safe as " +
-                "used (2015) http://www.cir-safety.org/sites/default/files/Safe_092" +
-                "posted110415.pdf","");
+//        spExpandTextView.setContent("此原料是中国已知的化妆品原料，未收录在《化妆品安此原料是中国已知的化妆品原料，未收录在《化妆品安此原料是中国已知的化妆品原料，未收录在参考文献：" +
+//                "1、《已使用化妆品原料名称目录》（2015）此原料是中国已知的化妆品原料，未收录在" +
+//                "2、Cosmetic Ingredient Review. Cosmetic ingredients found safe as " +
+//                "used (2015) http://www.cir-safety.org/sites/default/files/Safe_092" +
+//                "posted110415.pdf","");
 
         mBtnUpdateText.setOnClickListener(this);
         mBtnToListView.setOnClickListener(this);

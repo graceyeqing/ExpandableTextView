@@ -36,16 +36,17 @@
                 android:textSize="12dp"
                 android:visibility="gone"/>
 
-            <cn.carbs.android.expandabletextview.library.ExpandableTextView
-                android:id="@+id/etv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="32dp"
-                android:background="#22999999"
-                android:padding="12dp"
-                android:text="@string/poem_0"
-                android:textSize="12dp"
-                android:visibility="visible"/>
+<!--            <cn.carbs.android.expandabletextview.library.ExpandableTextView-->
+<!--                android:id="@+id/etv"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="32dp"-->
+<!--                android:background="#22999999"-->
+<!--                android:padding="12dp"-->
+<!--                android:text="@string/poem_0"-->
+<!--                android:textSize="12dp"-->
+<!--                app:etv_MaxLinesOnShrink="1"-->
+<!--                android:visibility="gone"/>-->
 
             <cn.carbs.android.expandabletextview.library.SpExpandTextView
                 android:id="@+id/sp_etv"
@@ -58,6 +59,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/sp_etv"
+                android:layout_marginTop="30dp"/>
+
+            <cn.carbs.android.expandabletextview.library.SpExpandTextView3
+                android:id="@+id/sp_etv3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/sp_etv2"
                 android:layout_marginTop="30dp"/>
 
             <TextView
