@@ -42,13 +42,9 @@ public class ActivityMain extends AppCompatActivity implements View.OnClickListe
         spExpandTextView = findViewById(R.id.sp_etv);
         spExpandTextView2 = findViewById(R.id.sp_etv2);
 
-        spExpandTextView2.setContent("此原料是中国已知的化妆品原料，未此原料是中国已知的化妆品原料，未此原料是中国已知的化妆品原料","参考文献：" +
+        spExpandTextView2.setContent("此原料是中国已知的化妆品原料，未此原料是","参考文献：" +
                 "1、《已使用化妆品原料名称目录》（2015）此原料是中国已知的化妆品原料，未收录在" +
-                "2、Cosmetic Ingredient Review. Cosmetic ingredients found safe as " +
-                "used (2015) http://www.cir-safety.org/sites/default/files/Safe_092" +
-                "posted110415.pdf"+"3、Cosmetic Ingredient Review. Cosmetic ingredients found safe as " +
-                        "used (2015) http://www.cir-safety.org/sites/default/files/Safe_092" +
-                        "posted110415.pdf");
+                "2、Cosmetic Ingredient Review. Cosmetic ingredients found safe as ");
 
         spExpandTextView.setContent("此原料是中国已知的化妆品原料，未收录在《化妆品安此原料是中国已知的化妆品原料，未收录在《化妆品安此原料是中国已知的化妆品原料，未收录在参考文献：" +
                 "1、《已使用化妆品原料名称目录》（2015）此原料是中国已知的化妆品原料，未收录在" +
