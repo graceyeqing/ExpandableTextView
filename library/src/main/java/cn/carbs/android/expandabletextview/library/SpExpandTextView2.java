@@ -3,11 +3,13 @@ package cn.carbs.android.expandabletextview.library;
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Build;
+import android.os.Handler;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.style.TextAppearanceSpan;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -71,48 +73,14 @@ public class SpExpandTextView2 extends RelativeLayout {
         mLLShrink = (LinearLayout) view.findViewById(R.id.ll_shrink);
         mLLExpend = (LinearLayout) view.findViewById(R.id.ll_expand);
 
-        mOriginView.getViewTreeObserver().addOnDrawListener(new ViewTreeObserver.OnDrawListener() {
-            @Override
-            public void onDraw() {
-                lineCount1 = mOriginView.getLineCount();
-                if (!initFlag) {
-                    if (lineCount1 > 4) {
-                        mLLExpend.setVisibility(View.VISIBLE);
-                        mDesView.setVisibility(View.GONE);
-                    } else {
-                        mDesView.setmMaxLinesOnShrink(4 - lineCount1);
-                        mDesView.setVisibility(View.VISIBLE);
-                        mLLExpend.setVisibility(View.GONE);
-                    }
-                    initFlag = true;
-                }
-
-            }
-        });
-
-        mDesView.getViewTreeObserver().addOnDrawListener(new ViewTreeObserver.OnDrawListener() {
-            @Override
-            public void onDraw() {
-                lineCount2 = mDesView.getmTextLineCount();
-                if (!initFlag2) {
-                    if(lineCount2 <= mDesView.getmMaxLinesOnShrink()){
-                        mLLExpend.setVisibility(View.GONE);
-                    }else{
-                        mLLExpend.setVisibility(View.VISIBLE);
-                    }
-
-                    initFlag2 = true;
-                }
-
-            }
-        });
 
         //收起的点击监听
         mLLShrink.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (lineCount1 > 4) {
+                if (lineCount1 >= mOriginView.getmMaxLinesOnShrink()) {
                     mOriginView.toggle();
+                    mDesView.setVisibility(View.GONE);
                 } else {
                     mDesView.toggle();
                 }
@@ -122,8 +90,9 @@ public class SpExpandTextView2 extends RelativeLayout {
         mLLExpend.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (lineCount1 > 4) {
+                if (lineCount1 >= mOriginView.getmMaxLinesOnShrink()) {
                     mOriginView.toggle();
+                    mDesView.setVisibility(View.VISIBLE);
                 } else {
                     mDesView.toggle();
                 }
@@ -147,14 +116,19 @@ public class SpExpandTextView2 extends RelativeLayout {
         mDesView.setExpandListener(new ExpandableTextView.OnExpandListener() {
             @Override
             public void onExpand(ExpandableTextView view) {
-                mLLExpend.setVisibility(GONE);
-                mLLShrink.setVisibility(VISIBLE);
+                if (initFlag) {
+                    mLLExpend.setVisibility(GONE);
+                    mLLShrink.setVisibility(VISIBLE);
+                }
+
             }
 
             @Override
             public void onShrink(ExpandableTextView view) {
-                mLLShrink.setVisibility(GONE);
-                mLLExpend.setVisibility(VISIBLE);
+                if (initFlag) {
+                    mLLShrink.setVisibility(GONE);
+                    mLLExpend.setVisibility(VISIBLE);
+                }
             }
         });
 
@@ -172,13 +146,70 @@ public class SpExpandTextView2 extends RelativeLayout {
         }
     }
 
-    public void setContent(String text1, String text2) {
+    public void setContent(String text1, final String text2) {
         if (!TextUtils.isEmpty(text1)) {
             mOriginView.setText(text1);
+            mDesView.getViewTreeObserver().addOnDrawListener(new ViewTreeObserver.OnDrawListener() {
+                @Override
+                public void onDraw() {
+                    lineCount1 = mOriginView.getLineCount();
+                    String result = mOriginView.getNewTextByConfig().toString();
+                    if (lineCount1 > 0) {
+                        if (!initFlag) {
+                            if (lineCount1 > mOriginView.getmMaxLinesOnShrink()) {
+                                mLLExpend.setVisibility(View.VISIBLE);
+                                mDesView.toggle();
+                                mDesView.setVisibility(View.GONE);
+                            } else if(lineCount1 == mOriginView.getmMaxLinesOnShrink() && !TextUtils.isEmpty(text2)){
+                                mLLExpend.setVisibility(View.VISIBLE);
+                                mDesView.toggle();
+                                mDesView.setVisibility(View.GONE);
+                            }else {
+                                mDesView.setmMaxLinesOnShrink(4 - lineCount1);
+                                Log.d("yeqing","setmMaxLinesOnShrink----"+mDesView.getmMaxLinesOnShrink());
+                                mDesView.setVisibility(View.VISIBLE);
+                                mLLExpend.setVisibility(View.GONE);
+
+                                new Handler().post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        mDesView.setText(text2);
+                                    }
+                                });
+                            }
+                            initFlag = true;
+                        }
+                    }
+                }
+            });
+        } else {
+            lineCount1 = 0;
+            mDesView.setmMaxLinesOnShrink(4);
         }
 
         if (!TextUtils.isEmpty(text2)) {
+            Log.d("yeqing","MaxLines----"+mDesView.getmMaxLinesOnShrink());
             mDesView.setText(text2);
         }
+
+        mDesView.getViewTreeObserver().addOnDrawListener(new ViewTreeObserver.OnDrawListener() {
+            @Override
+            public void onDraw() {
+                lineCount2 = mDesView.getmTextLineCount();
+                if (lineCount2 > 0) {
+                    if (!initFlag2) {
+                        if (lineCount2 <= mDesView.getmMaxLinesOnShrink()) {
+                            mLLExpend.setVisibility(View.GONE);
+                        } else {
+                            mLLExpend.setVisibility(View.VISIBLE);
+                        }
+
+                        initFlag2 = true;
+                    }
+                }
+            }
+        });
+
     }
+
 }

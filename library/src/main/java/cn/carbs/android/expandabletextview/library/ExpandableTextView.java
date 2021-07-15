@@ -232,7 +232,7 @@ public class ExpandableTextView extends TextView{
      * @return
      *      get a will-be-displayed text
      */
-    private CharSequence getNewTextByConfig(){
+    public CharSequence getNewTextByConfig(){
         if(TextUtils.isEmpty(mOrigText)){
             return mOrigText;
         }
