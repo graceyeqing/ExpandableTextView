@@ -19,6 +19,7 @@
             app:etv_MaxLinesOnShrink="4"
             app:etv_ToShrinkHintShow="false"
             app:etv_ToExpandHintShow="false"
+            app:etv_EnableToggle="false"
             app:etv_ToExpandHintColor="#ffffff"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
@@ -41,23 +42,30 @@
             android:gravity="right|center_vertical"
             app:layout_constraintTop_toBottomOf="@+id/tv_des2"
             app:layout_constraintEnd_toEndOf="parent"
-            android:visibility="gone">
-            <TextView
+            android:visibility="visible">
+            <LinearLayout
                 android:id="@+id/tv_expand"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="展开"
-                android:textColor="#FFB76EFF"
-                android:textSize="14sp"
-                android:gravity="right"/>
-            <ImageView
-                android:id="@+id/iv_arrow_down"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:layout_marginLeft="5dp"
-                android:paddingTop="2dp"
-                android:src="@drawable/icon_arrow_down0"/>
+                android:gravity="right|center_vertical"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="展开"
+                    android:textColor="#FFB76EFF"
+                    android:textSize="14sp"
+                    android:gravity="right"/>
+                <ImageView
+                    android:id="@+id/iv_arrow_down"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginLeft="5dp"
+                    android:paddingTop="2dp"
+                    android:src="@drawable/icon_arrow_down0"/>
+            </LinearLayout>
+
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -68,8 +76,13 @@
         android:orientation="horizontal"
         android:gravity="right|center_vertical"
         android:visibility="gone">
-        <TextView
+        <LinearLayout
             android:id="@+id/tv_shrink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right|center_vertical"
+            android:orientation="horizontal">
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="收起"
@@ -87,6 +100,7 @@
             android:paddingTop="2dp"
             android:gravity="center_vertical"
             android:src="@drawable/icon_arrow_up0"/>
+        </LinearLayout>
     </LinearLayout>
 
 

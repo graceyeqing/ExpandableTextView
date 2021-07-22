@@ -48,7 +48,7 @@ public class ActivityMain extends AppCompatActivity implements View.OnClickListe
         spExpandTextView2.setContent("此原中中国料，未此原料是","参考文献：\n" +
                 "1、《已使用化妆品原料名称目录》Review. Cosmetic ingredients found safe as \n" +
                 "2、Cosmetic Ingredient Review. Cosmetic ingredients found safe as ");
-        spExpandTextView3.setContent("此原中中国原料是此料是","参考文献：\n" +
+        spExpandTextView3.setContent("此原中中是此料是此原中中国原料是此料是此原中中国原料是此料是此原中中国原料是此料是","参考文献：\n" +
                 "1、《已使用化妆品原料名称目录》Review. Cosmetic ingredients found safe as \n" +
                 "2、《已使用化妆品原料名称目录》Review. Cosmetic ingredients found safe as \n" +
                 "3、Cosmetic Ingredient Review. Cosmetic ingredients found safe as ");

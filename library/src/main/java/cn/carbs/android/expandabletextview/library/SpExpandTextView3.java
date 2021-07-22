@@ -29,6 +29,7 @@ public class SpExpandTextView3 extends RelativeLayout {
     private ExpandableTextView mOriginView;
     //收起文本
     private LinearLayout mLLShrink, mLLExpend;
+    private LinearLayout mTextShrink, mTextExpend;
     private TextView mDesView2;
 
     private int lineCount1, lineCount2;
@@ -68,10 +69,12 @@ public class SpExpandTextView3 extends RelativeLayout {
         mDesView2 = (TextView) view.findViewById(R.id.tv_des2);
         mLLShrink = (LinearLayout) view.findViewById(R.id.ll_shrink);
         mLLExpend = (LinearLayout) view.findViewById(R.id.ll_expand);
+        mTextShrink = (LinearLayout) view.findViewById(R.id.tv_shrink);
+        mTextExpend = (LinearLayout) view.findViewById(R.id.tv_expand);
 
 
         //收起的点击监听
-        mLLShrink.setOnClickListener(new OnClickListener() {
+        mTextShrink.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (lineCount1 >= mOriginView.getmMaxLinesOnShrink()) {
@@ -94,7 +97,7 @@ public class SpExpandTextView3 extends RelativeLayout {
             }
         });
         //展开监听
-        mLLExpend.setOnClickListener(new OnClickListener() {
+        mTextExpend.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (lineCount1 >= mOriginView.getmMaxLinesOnShrink()) {
