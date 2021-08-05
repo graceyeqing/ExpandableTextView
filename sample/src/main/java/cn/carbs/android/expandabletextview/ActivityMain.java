@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Random;
 
+import cn.carbs.android.expandabletextview.library.ExpandableEndTextView;
 import cn.carbs.android.expandabletextview.library.ExpandableTextView;
 import cn.carbs.android.expandabletextview.library.SpExpandTextView;
 import cn.carbs.android.expandabletextview.library.SpExpandTextView2;
@@ -23,7 +24,7 @@ public class ActivityMain extends AppCompatActivity implements View.OnClickListe
     private TextView mTVComparison;
     private Button mBtnUpdateText;
     private Button mBtnToListView;
-    private SpExpandTextView spExpandTextView;
+    private ExpandableEndTextView spExpandTextView;
     private SpExpandTextView2 spExpandTextView2;
     private SpExpandTextView3 spExpandTextView3;
 
@@ -45,13 +46,13 @@ public class ActivityMain extends AppCompatActivity implements View.OnClickListe
         spExpandTextView2 = findViewById(R.id.sp_etv2);
         spExpandTextView3 = findViewById(R.id.sp_etv3);
 
-        spExpandTextView2.setContent("此原中中国料，未此原料是","参考文献：\n" +
-                "1、《已使用化妆品原料名称目录》Review. Cosmetic ingredients found safe as \n" +
+        spExpandTextView.setText("此原中中国料，未此原料是参考文献：\n" +
+                "1、《已使用化妆品原料名\n称目录》Review. Cosmetic ingredients found safe as " +
                 "2、Cosmetic Ingredient Review. Cosmetic ingredients found safe as ");
-        spExpandTextView3.setContent("此原中中是此料是此原中中国原料是此料是此原中中国原料是此料是此原中中国原料是此料是","参考文献：\n" +
-                "1、《已使用化妆品原料名称目录》Review. Cosmetic ingredients found safe as \n" +
-                "2、《已使用化妆品原料名称目录》Review. Cosmetic ingredients found safe as \n" +
-                "3、Cosmetic Ingredient Review. Cosmetic ingredients found safe as ");
+//        spExpandTextView3.setContent("此原中中是此料是此原中中国原料是此料是此原中中国原料是此料是此原中中国原料是此料是","参考文献：\n" +
+//                "1、《已使用化妆品原料名称目录》Review. Cosmetic ingredients found safe as \n" +
+//                "2、《已使用化妆品原料名称目录》Review. Cosmetic ingredients found safe as \n" +
+//                "3、Cosmetic Ingredient Review. Cosmetic ingredients found safe as ");
 
 //        spExpandTextView.setContent("此原料是中国已知的化妆品原料，未收录在《化妆品安此原料是中国已知的化妆品原料，未收录在《化妆品安此原料是中国已知的化妆品原料，未收录在参考文献：" +
 //                "1、《已使用化妆品原料名称目录》（2015）此原料是中国已知的化妆品原料，未收录在" +

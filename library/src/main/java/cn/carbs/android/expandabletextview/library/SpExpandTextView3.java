@@ -36,6 +36,7 @@ public class SpExpandTextView3 extends RelativeLayout {
     private boolean initFlag, initFlag2;
     private int desMaxline;
 
+
     public SpExpandTextView3(Context context) {
         super(context);
         init();
@@ -60,9 +61,10 @@ public class SpExpandTextView3 extends RelativeLayout {
     private void init() {
         LayoutInflater inflater = (LayoutInflater) getContext()
                 .getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
         Resources resources = getContext().getResources();
 
-        View view = inflater.inflate(R.layout.layout_new_expandtextview3, null);
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.layout_new_expandtextview3, null);
         addView(view);
 
         mOriginView = (ExpandableTextView) view.findViewById(R.id.tv_content);

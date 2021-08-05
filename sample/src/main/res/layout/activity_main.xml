@@ -48,7 +48,7 @@
 <!--                app:etv_MaxLinesOnShrink="1"-->
 <!--                android:visibility="gone"/>-->
 
-            <cn.carbs.android.expandabletextview.library.SpExpandTextView
+            <cn.carbs.android.expandabletextview.library.ExpandableEndTextView
                 android:id="@+id/sp_etv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
